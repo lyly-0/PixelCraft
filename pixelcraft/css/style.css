@@ -1,0 +1,518 @@
+/*
+============
+基础
+============
+*/
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif;
+    background-color: #1a1a2e;
+    color: #e0e0e0;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0 10px;
+}
+
+header h1 {
+    font-size: 2em;
+    color: #4CAF50;
+    margin-bottom: 4px;
+}
+
+header p {
+    color: #888;
+    font-size: 0.95em;
+}
+
+/*
+============
+标签导航
+============
+*/
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 24px;
+    border-bottom: 2px solid #2a2a4a;
+}
+
+.tab {
+    padding: 12px 32px;
+    border: none;
+    background: none;
+    color: #888;
+    font-size: 1em;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.3s;
+}
+
+.tab.active {
+    color: #4CAF50;
+    border-bottom-color: #4CAF50;
+}
+
+.tab:hover:not(.active) {
+    color: #bbb;
+}
+
+/*
+============
+标签内容
+============
+*/
+.tab-content {
+    display: none;
+    animation: fadeSlideIn 0.35s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*
+============
+上传区
+============
+*/
+.upload-section {
+    max-width: 500px;
+    margin: 40px auto;
+}
+
+.upload-area {
+    border: 2px dashed #3a3a5a;
+    border-radius: 16px;
+    padding: 80px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: #16213e;
+}
+
+.upload-area:hover,
+.upload-area.dragover {
+    border-color: #4CAF50;
+    background-color: #1a2a45;
+}
+
+.upload-icon {
+    font-size: 3em;
+    margin-bottom: 12px;
+}
+
+.upload-area p {
+    color: #aaa;
+    font-size: 1.1em;
+    pointer-events: none;
+}
+
+.upload-area .hint {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 8px;
+}
+
+/*
+============
+工作区
+============
+*/
+.workspace {
+    animation: fadeSlideIn 0.35s ease;
+}
+
+/*
+双图左右并排
+*/
+.preview-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.preview-panel {
+    background-color: #16213e;
+    border-radius: 12px;
+    padding: 16px;
+    flex: 1;
+    min-width: 0;
+    max-width: 480px;
+}
+
+.panel-label {
+    font-size: 1em;
+    font-weight: 600;
+    color: #ccc;
+    margin-bottom: 4px;
+}
+
+.panel-info {
+    font-size: 0.8em;
+    color: #888;
+    font-family: 'SF Mono', 'Courier New', monospace;
+    margin-bottom: 10px;
+}
+
+.canvas-container {
+    background-color: #0d0d1f;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+    overflow: auto;
+    background-image:
+        linear-gradient(45deg, #1a1a2e 25%, transparent 25%),
+        linear-gradient(-45deg, #1a1a2e 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #1a1a2e 75%),
+        linear-gradient(-45deg, transparent 75%, #1a1a2e 75%);
+    background-size: 20px 20px;
+    background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+}
+
+.canvas-container canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.arrow-divider {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    flex-shrink: 0;
+}
+
+/*
+============
+控制面板
+============
+*/
+.control-panel {
+    background-color: #16213e;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.control-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/*
+复选框
+*/
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.checkbox-wrapper input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #4CAF50;
+}
+
+.checkbox-text {
+    color: #bbb;
+    font-size: 0.9em;
+}
+
+.input-group label {
+    color: #bbb;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+.size-input {
+    width: 68px;
+    padding: 7px 8px;
+    border: 1px solid #3a3a5a;
+    border-radius: 6px;
+    background: #1a1a2e;
+    color: #fff;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.select-input {
+    padding: 7px 10px;
+    border: 1px solid #3a3a5a;
+    border-radius: 6px;
+    background: #1a1a2e;
+    color: #fff;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+/*
+按钮
+*/
+.btn {
+    padding: 9px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: #4CAF50;
+    color: #fff;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #43a047;
+}
+
+.btn-primary:disabled {
+    background: #3a3a5a;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.btn-download {
+    background: #2196F3;
+    color: #fff;
+}
+
+.btn-download:hover:not(:disabled) {
+    background: #1e88e5;
+}
+
+.btn-download:disabled {
+    background: #3a3a5a;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.btn-secondary {
+    background: #3a3a5a;
+    color: #ccc;
+}
+
+.btn-secondary:hover {
+    background: #4a4a6a;
+}
+
+/*
+============
+自动绘画助手
+============
+*/
+.painter-layout {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.painter-preview {
+    flex: 1;
+    min-width: 280px;
+    background-color: #16213e;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.painter-results {
+    flex: 1;
+    min-width: 280px;
+    background-color: #16213e;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.section-title {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: #ccc;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #2a2a4a;
+}
+
+.painter-info {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 8px;
+    font-family: 'SF Mono', 'Courier New', monospace;
+}
+
+.painter-upload {
+    margin-top: 12px;
+}
+
+.painter-stats {
+    font-size: 0.9em;
+    color: #aaa;
+    line-height: 1.8;
+}
+
+.painter-stats span {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+/*
+颜色列表
+*/
+.color-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin: 12px 0;
+}
+
+.color-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    transition: background 0.2s;
+}
+
+.color-item:hover {
+    background-color: #1a1a2e;
+}
+
+.color-swatch {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    flex-shrink: 0;
+}
+
+.color-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.color-name {
+    font-size: 0.9em;
+    color: #ddd;
+}
+
+.color-hex {
+    font-size: 0.75em;
+    color: #888;
+    font-family: 'SF Mono', 'Courier New', monospace;
+}
+
+.color-count {
+    font-size: 0.85em;
+    color: #aaa;
+    white-space: nowrap;
+}
+
+/*
+滑块
+*/
+.slider {
+    -webkit-appearance: none;
+    width: 120px;
+    height: 6px;
+    border-radius: 3px;
+    background: #3a3a5a;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.download-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+}
+
+/*
+============
+响应式
+============
+*/
+@media (max-width: 750px) {
+    .preview-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .arrow-divider {
+        transform: rotate(90deg);
+        padding-top: 0;
+        margin: 8px 0;
+    }
+
+    .preview-panel {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .control-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .painter-layout {
+        flex-direction: column;
+    }
+}
